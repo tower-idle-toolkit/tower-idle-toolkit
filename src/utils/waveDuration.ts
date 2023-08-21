@@ -158,11 +158,11 @@ export const getInGameWaveTime = (
  * @function getRealWaveTime - Get the real world time a wave takes, accounting for game speed, but not accounting for Device Frame Drift.
  *
  * Takes an object with the params:
- * @param wave - number - The wave
- * @param displayedGameSpeed - number - The displayed game speed - use the value in game. For perks, you can use the "actual" value pre-rounding (6.25 with 1.25 perk bonus)
- * @param introSprint - boolean - If the intro sprint card is active
- * @param waveAccelerator - number - The stars of the Wave Accelerator card (0-7, 0 is unequipped)
- * @param tournament - boolean - If it is a tournament, speed up the cooldown.
+ * - `wave` - number - The wave
+ * - `displayedGameSpeed` - number - The displayed game speed - use the value in game. For perks, you can use the "actual" value pre-rounding (6.25 with 1.25 perk bonus)
+ * - `introSprint` - boolean - If the intro sprint card is active
+ * - `waveAccelerator` - number - The stars of the Wave Accelerator card (0-7, 0 is unequipped)
+ * - `tournament` - boolean - If it is a tournament, speed up the cooldown.
  * @returns number - The actual seconds the wave took, not accounting for Device Frame Drift.
  */
 export const getRealWaveTime = ({
