@@ -26,7 +26,7 @@ for (let line = 2; line < lines.length; line += 1) {
   labs.forEach((lab, labIndex) => {
     const labDuration = cells[labIndex * 2 + 1];
     const labCost = cells[labIndex * 2 + 2];
-    if(labDuration) {
+    if (labDuration) {
       labMap[lab][level] = {
         DURATION: parseTime(labDuration),
         COST: parseValue(labCost),
