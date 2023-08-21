@@ -1,4 +1,4 @@
-import { WAVE_ACCELERATOR_CARD } from 'constants';
+import { WAVE_ACCELERATOR_CARD } from 'constants/cards';
 
 export const getRealGameSpeed = (
   displayedGameSpeed: number,
