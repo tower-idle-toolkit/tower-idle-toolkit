@@ -1,4 +1,21 @@
+/**
+ * @type UltimateWeapon - An UltimateWeapon is a map following the format:
+ *
+ * ```ts
+ *  {
+ *    name: string; // The english name of the UW
+ *    upgrades: { // A map of the upgrades
+ *      [upgrade: string]: { // The upgrade name displayed in game, in english
+ *        values: { value: number; cost: number; }[], // a map of values and their associated costs; the first value is how strong it is at 0 upgrades with 0 cost
+ *        lab?: { growth: number; max: number; } // if there is an associated lab with this upgrade, this contains how much it increases the value for each level, and the max value for the lab
+ *        perk?: (value: number) => number; // if this value has an associated perk, this takes in the current value, applies any perk modifier, and returns the new value. (i.e. scaling GT Bonus by 1.5x)
+ *      }
+ *    }
+ *  }
+ * ```
+ */
 export type UltimateWeapon = Readonly<{
+  name: string;
   upgrades: Readonly<{
     [upgrade: string]: Readonly<{
       values: Readonly<Readonly<{ value: number; cost: number }>[]>;
@@ -8,6 +25,9 @@ export type UltimateWeapon = Readonly<{
     }>;
   }>;
 }>;
+/**
+ * @type UltimateWeapns - UltimateWeapons type maps the Ultimate Weapon English name to its associated config
+ */
 export type UltimateWeapons = Readonly<{
   [UltimateWeapon: string]: UltimateWeapon;
 }>;
@@ -21,7 +41,11 @@ const seconds = (value: number) => `${value.toFixed(0)}s`;
 const size = (value: number) => `${value.toFixed(0)}m`;
 const bonus = (value: number) => `${value.toFixed(2)}x`;
 
-const DEATH_WAVE: UltimateWeapon = Object.freeze({
+/**
+ * @constant DEATH_WAVE - Death Wave config
+ */
+export const DEATH_WAVE: UltimateWeapon = Object.freeze({
+  name: 'Death Wave',
   upgrades: Object.freeze({
     'Damage %': Object.freeze({
       values: Object.freeze([
@@ -99,7 +123,11 @@ const DEATH_WAVE: UltimateWeapon = Object.freeze({
   }),
 });
 
-const BLACK_HOLE: UltimateWeapon = Object.freeze({
+/**
+ * @constant BLACK_HOLE - Black Hole config
+ */
+export const BLACK_HOLE: UltimateWeapon = Object.freeze({
+  name: 'Black Hole',
   upgrades: Object.freeze({
     Size: Object.freeze({
       values: Object.freeze([
@@ -173,7 +201,11 @@ const BLACK_HOLE: UltimateWeapon = Object.freeze({
   }),
 });
 
-const GOLDEN_TOWER: UltimateWeapon = Object.freeze({
+/**
+ * @constant GOLDEN_TOWER - Golden Tower config
+ */
+export const GOLDEN_TOWER: UltimateWeapon = Object.freeze({
+  name: 'Golden Tower',
   upgrades: Object.freeze({
     Bonus: Object.freeze({
       values: Object.freeze([
@@ -264,7 +296,11 @@ const GOLDEN_TOWER: UltimateWeapon = Object.freeze({
   }),
 });
 
-const SMART_MISSILES: UltimateWeapon = Object.freeze({
+/**
+ * @constant SMART_MISSILES - Smart Missiles config
+ */
+export const SMART_MISSILES: UltimateWeapon = Object.freeze({
+  name: 'Smart Missiles',
   upgrades: Object.freeze({
     Damage: Object.freeze({
       values: Object.freeze([
@@ -345,7 +381,11 @@ const SMART_MISSILES: UltimateWeapon = Object.freeze({
   }),
 });
 
-const CHRONO_FIELD: UltimateWeapon = Object.freeze({
+/**
+ * @constant CHRONO_FIELD - Chrono Field config
+ */
+export const CHRONO_FIELD: UltimateWeapon = Object.freeze({
+  name: 'Chrono Field',
   upgrades: Object.freeze({
     Duration: Object.freeze({
       values: Object.freeze([
@@ -424,7 +464,11 @@ const CHRONO_FIELD: UltimateWeapon = Object.freeze({
   }),
 });
 
-const POISON_SWAMP: UltimateWeapon = Object.freeze({
+/**
+ * @constant POISON_SWAMP - Poison Swamp config
+ */
+export const POISON_SWAMP: UltimateWeapon = Object.freeze({
+  name: 'Poison Swamp',
   upgrades: Object.freeze({
     'Damage %': Object.freeze({
       values: Object.freeze([
@@ -500,7 +544,11 @@ const POISON_SWAMP: UltimateWeapon = Object.freeze({
   }),
 });
 
-const INNER_LAND_MINES: UltimateWeapon = Object.freeze({
+/**
+ * @constant INNER_LAND_MINES - Inner Land Mines config
+ */
+export const INNER_LAND_MINES: UltimateWeapon = Object.freeze({
+  name: 'Inner Land Mines',
   upgrades: Object.freeze({
     'Damage %': Object.freeze({
       values: Object.freeze([
@@ -572,7 +620,11 @@ const INNER_LAND_MINES: UltimateWeapon = Object.freeze({
   }),
 });
 
-const CHAIN_LIGHTNING: UltimateWeapon = Object.freeze({
+/**
+ * @constant CHAIN_LIGHTNING - Chain Lightning config
+ */
+export const CHAIN_LIGHTNING: UltimateWeapon = Object.freeze({
+  name: 'Chain Lightning',
   upgrades: Object.freeze({
     'Damage %': Object.freeze({
       values: Object.freeze([
@@ -645,7 +697,11 @@ const CHAIN_LIGHTNING: UltimateWeapon = Object.freeze({
   }),
 });
 
-const SPOTLIGHT: UltimateWeapon = Object.freeze({
+/**
+ * @constant SPOTLIGHT - Spotlight config
+ */
+export const SPOTLIGHT: UltimateWeapon = Object.freeze({
+  name: 'Spotlight',
   upgrades: Object.freeze({
     Bonus: Object.freeze({
       values: Object.freeze([
@@ -726,16 +782,22 @@ const SPOTLIGHT: UltimateWeapon = Object.freeze({
   }),
 });
 
+/**
+ * @constant ULTIMATE_WEAPONS - An actual map of Ultimate Weapon English names to their appropriate configs
+ */
 export const ULTIMATE_WEAPONS: UltimateWeapons = Object.freeze({
-  'Death Wave': DEATH_WAVE,
-  'Black Hole': BLACK_HOLE,
-  'Golden Tower': GOLDEN_TOWER,
-  'Smart Missiles': SMART_MISSILES,
-  'Chrono Field': CHRONO_FIELD,
-  'Poison Swamp': POISON_SWAMP,
-  'Inner Land Mines': INNER_LAND_MINES,
-  'Chain Lightning': CHAIN_LIGHTNING,
-  Spotlight: SPOTLIGHT,
+  [DEATH_WAVE.name]: DEATH_WAVE,
+  [BLACK_HOLE.name]: BLACK_HOLE,
+  [GOLDEN_TOWER.name]: GOLDEN_TOWER,
+  [SMART_MISSILES.name]: SMART_MISSILES,
+  [CHRONO_FIELD.name]: CHRONO_FIELD,
+  [SPOTLIGHT.name]: POISON_SWAMP,
+  [INNER_LAND_MINES.name]: INNER_LAND_MINES,
+  [CHAIN_LIGHTNING.name]: CHAIN_LIGHTNING,
+  [SPOTLIGHT.name]: SPOTLIGHT,
 });
 
+/**
+ * @constant UNLOCK_COSTS - Unlock Costs for each successive Ultimate Weapon unlock
+ */
 export const UNLOCK_COSTS = [5, 50, 150, 300, 800, 1250, 1750, 2400, 3000];

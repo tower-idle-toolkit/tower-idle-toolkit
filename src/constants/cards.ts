@@ -1,3 +1,6 @@
+/**
+ * @constant DAMAGE_CARD - Maps Damage Card stars to value, 0 is unequipped
+ */
 export const DAMAGE_CARD = Object.freeze({
   0: 1,
   1: 1.5,
@@ -9,6 +12,9 @@ export const DAMAGE_CARD = Object.freeze({
   7: 4,
 });
 
+/**
+ * @constant ASPD_CARD - Maps Attack Speed Card stars to value, 0 is unequipped
+ */
 export const ASPD_CARD = Object.freeze({
   0: 1,
   1: 1.25,
@@ -20,6 +26,9 @@ export const ASPD_CARD = Object.freeze({
   7: 2.15,
 });
 
+/**
+ * @constant HEALTH_CARD - Maps Health Card stars to value, 0 is unequipped
+ */
 export const HEALTH_CARD = Object.freeze({
   0: 1,
   1: 1.5,
@@ -31,6 +40,9 @@ export const HEALTH_CARD = Object.freeze({
   7: 4,
 });
 
+/**
+ * @constant REGEN_CARD - Maps Regen Card stars to value, 0 is unequipped
+ */
 export const REGEN_CARD = Object.freeze({
   0: 1,
   1: 1.4,
@@ -42,6 +54,9 @@ export const REGEN_CARD = Object.freeze({
   7: 2.6,
 });
 
+/**
+ * @constant RANGE_CARD - Maps Range Card stars to value, 0 is unequipped
+ */
 export const RANGE_CARD = Object.freeze({
   0: 1,
   1: 1.15,
@@ -53,6 +68,9 @@ export const RANGE_CARD = Object.freeze({
   7: 1.45,
 });
 
+/**
+ * @constant CASH_CARD - Maps Cash Card stars to value, 0 is unequipped
+ */
 export const CASH_CARD = Object.freeze({
   0: 1,
   1: 1.2,
@@ -64,6 +82,9 @@ export const CASH_CARD = Object.freeze({
   7: 2.4,
 });
 
+/**
+ * @constant COIN_CARD - Maps Coin Card stars to value, 0 is unequipped
+ */
 export const COIN_CARD = Object.freeze({
   0: 1,
   1: 1.15,
@@ -75,6 +96,9 @@ export const COIN_CARD = Object.freeze({
   7: 1.45,
 });
 
+/**
+ * @constant SLOW_AURA_CARD - Maps Slow Aura Card stars to value, 0 is unequipped
+ */
 export const SLOW_AURA_CARD = Object.freeze({
   0: 0,
   1: 13,
@@ -86,6 +110,9 @@ export const SLOW_AURA_CARD = Object.freeze({
   7: 31,
 });
 
+/**
+ * @constant CRIT_CHANCE_CARD - Maps Crit Chance Card stars to value, 0 is unequipped
+ */
 export const CRIT_CHANCE_CARD = Object.freeze({
   0: 0,
   1: 5,
@@ -97,6 +124,9 @@ export const CRIT_CHANCE_CARD = Object.freeze({
   7: 11,
 });
 
+/**
+ * @constant ENEMY_BALANCE_CARD - Maps Enemy Balance Card stars to value, 0 is unequipped
+ */
 export const ENEMY_BALANCE_CARD = Object.freeze({
   0: 1,
   1: 1.3,
@@ -108,6 +138,9 @@ export const ENEMY_BALANCE_CARD = Object.freeze({
   7: 1.9,
 });
 
+/**
+ * @constant EXTRA_DEFENSE_CARD - Maps Extra Defense Card stars to value, 0 is unequipped
+ */
 export const EXTRA_DEFENSE_CARD = Object.freeze({
   0: 0,
   1: 5,
@@ -119,6 +152,9 @@ export const EXTRA_DEFENSE_CARD = Object.freeze({
   7: 11,
 });
 
+/**
+ * @constant FORTRESS_CARD - Maps Fortress Card stars to value, 0 is unequipped
+ */
 export const FORTRESS_CARD = Object.freeze({
   0: 1,
   1: 1.3,
@@ -130,6 +166,9 @@ export const FORTRESS_CARD = Object.freeze({
   7: 2.2,
 });
 
+/**
+ * @constant COMMON_CARDS - Maps Common cards from their in game English names to their config objects
+ */
 export const COMMON_CARDS = Object.freeze({
   Damage: DAMAGE_CARD,
   'Attack Speed': ASPD_CARD,
@@ -145,6 +184,9 @@ export const COMMON_CARDS = Object.freeze({
   Fortress: FORTRESS_CARD,
 });
 
+/**
+ * @constant INTRO_SPRINT_CARD - Maps Intro Sprint Card stars to value, 0 is unequipped
+ */
 export const INTRO_SPRINT_CARD = Object.freeze({
   0: 0,
   1: 20,
@@ -156,6 +198,9 @@ export const INTRO_SPRINT_CARD = Object.freeze({
   7: 50,
 });
 
+/**
+ * @constant WAVE_SKIP_CARD - Maps Wave Skip Card stars to value, 0 is unequipped
+ */
 export const WAVE_SKIP_CARD = Object.freeze({
   0: 0,
   1: 9,
@@ -167,6 +212,9 @@ export const WAVE_SKIP_CARD = Object.freeze({
   7: 19,
 });
 
+/**
+ * @constant CRIT_COIN_CARD - Maps Crit Coin Card stars to value, 0 is unequipped
+ */
 export const CRIT_COIN_CARD = Object.freeze({
   0: 0,
   1: 15,
@@ -178,6 +226,9 @@ export const CRIT_COIN_CARD = Object.freeze({
   7: 33,
 });
 
+/**
+ * @constant PLASMA_CANNON_CARD - Maps Plasma Cannon Card stars to value, 0 is unequipped
+ */
 export const PLASMA_CANNON_CARD = Object.freeze({
   0: 0,
   1: 30,
@@ -189,6 +240,9 @@ export const PLASMA_CANNON_CARD = Object.freeze({
   7: 54,
 });
 
+/**
+ * @constant EXTRA_ORB_CARD - Maps Extra Orb Card stars to value, 0 is unequipped
+ */
 export const EXTRA_ORB_CARD = Object.freeze({
   0: 0,
   1: 0.3,
@@ -200,6 +254,9 @@ export const EXTRA_ORB_CARD = Object.freeze({
   7: 0.9,
 });
 
+/**
+ * @constant FREE_UPGRADES_CARD - Maps Free Upgrades Card stars to value, 0 is unequipped
+ */
 export const FREE_UPGRADES_CARD = Object.freeze({
   0: 0,
   1: 4,
@@ -211,6 +268,9 @@ export const FREE_UPGRADES_CARD = Object.freeze({
   7: 10,
 });
 
+/**
+ * @constant LAND_MINE_STUN_CARD - Maps Land Mine Stun Card stars to value, 0 is unequipped
+ */
 export const LAND_MINE_STUN_CARD = Object.freeze({
   0: 0,
   1: 1.4,
@@ -222,6 +282,9 @@ export const LAND_MINE_STUN_CARD = Object.freeze({
   7: 3.8,
 });
 
+/**
+ * @constant RECOVERY_PACKAGE_CHANCE_CARD - Maps Recovery Package Chance Card stars to value, 0 is unequipped
+ */
 export const RECOVERY_PACKAGE_CHANCE_CARD = Object.freeze({
   0: 0,
   1: 15,
@@ -233,6 +296,9 @@ export const RECOVERY_PACKAGE_CHANCE_CARD = Object.freeze({
   7: 33,
 });
 
+/**
+ * @constant RARE_CARDS - Maps Rare cards from their in game English names to their config objects
+ */
 export const RARE_CARDS = Object.freeze({
   'Intro Sprint': INTRO_SPRINT_CARD,
   'Wave Skip': WAVE_SKIP_CARD,
@@ -244,6 +310,9 @@ export const RARE_CARDS = Object.freeze({
   'Recovery Package Chance': RECOVERY_PACKAGE_CHANCE_CARD,
 });
 
+/**
+ * @constant DEATH_RAY_CARD - Maps Death Ray Card stars to value, 0 is unequipped
+ */
 export const DEATH_RAY_CARD = Object.freeze({
   0: 0,
   1: 2.3,
@@ -255,6 +324,9 @@ export const DEATH_RAY_CARD = Object.freeze({
   7: 4.9,
 });
 
+/**
+ * @constant ENERGY_NET_CARD - Maps Energy Net Card stars to value, 0 is unequipped
+ */
 export const ENERGY_NET_CARD = Object.freeze({
   0: 0,
   1: 2.5,
@@ -266,6 +338,9 @@ export const ENERGY_NET_CARD = Object.freeze({
   7: 4.3,
 });
 
+/**
+ * @constant SUPER_TOWER_CARD - Maps Super Tower Card stars to value, 0 is unequipped
+ */
 export const SUPER_TOWER_CARD = Object.freeze({
   0: 1,
   1: 2.5,
@@ -277,6 +352,9 @@ export const SUPER_TOWER_CARD = Object.freeze({
   7: 5,
 });
 
+/**
+ * @constant SECOND_WIND_CARD - Maps Second Wind Card stars to value, 0 is unequipped
+ */
 export const SECOND_WIND_CARD = Object.freeze({
   0: 0,
   1: 10,
@@ -288,6 +366,9 @@ export const SECOND_WIND_CARD = Object.freeze({
   7: 40,
 });
 
+/**
+ * @constant DEMON_MODE_CARD - Maps Demon Mode Card stars to value, 0 is unequipped
+ */
 export const DEMON_MODE_CARD = Object.freeze({
   0: 0,
   1: 180,
@@ -299,6 +380,9 @@ export const DEMON_MODE_CARD = Object.freeze({
   7: 300,
 });
 
+/**
+ * @constant ENERGY_SHIELD_CARD - Maps Energy Shield Card stars to value, 0 is unequipped
+ */
 export const ENERGY_SHIELD_CARD = Object.freeze({
   0: 0,
   1: 20,
@@ -310,6 +394,9 @@ export const ENERGY_SHIELD_CARD = Object.freeze({
   7: 8,
 });
 
+/**
+ * @constant WAVE_ACCELERATOR_CARD - Maps Wave Accelerator Card stars to value, 0 is unequipped
+ */
 export const WAVE_ACCELERATOR_CARD = Object.freeze({
   0: 0,
   1: 30,
@@ -321,6 +408,9 @@ export const WAVE_ACCELERATOR_CARD = Object.freeze({
   7: 54,
 });
 
+/**
+ * @constant BERSERKER_CARD - Maps Berserker Card stars to value, 0 is unequipped
+ */
 export const BERSERKER_CARD = Object.freeze({
   0: 0,
   1: 1,
@@ -332,6 +422,9 @@ export const BERSERKER_CARD = Object.freeze({
   7: 1.6,
 });
 
+/**
+ * @constant ULTIMATE_CRIT_CARD - Maps Ultimate Crit Card stars to value, 0 is unequipped
+ */
 export const ULTIMATE_CRIT_CARD = Object.freeze({
   0: 0,
   1: 1,
@@ -343,6 +436,9 @@ export const ULTIMATE_CRIT_CARD = Object.freeze({
   7: 3,
 });
 
+/**
+ * @constant EPIC_CARDS - Maps Epic cards from their in game English names to their config objects
+ */
 export const EPIC_CARDS = Object.freeze({
   'Death Ray': DEATH_RAY_CARD,
   'Energy Net': ENERGY_NET_CARD,
@@ -355,23 +451,29 @@ export const EPIC_CARDS = Object.freeze({
   'Ultimate Crit': ULTIMATE_CRIT_CARD,
 });
 
+/**
+ * @constant CARDS - Maps All cards from their in game English names to their config objects
+ */
 export const CARDS = Object.freeze({
   ...COMMON_CARDS,
   ...RARE_CARDS,
   ...EPIC_CARDS,
 });
 
+/**
+ * @constant LOCKED_CARDS - Maps Locked cards from their in game English names to the { tier, wave } milestone that they unlock
+ */
 export const LOCKED_CARDS = Object.freeze({
   'Land Mine Stun': Object.freeze({
-    Tier: 7,
-    Wave: 250,
+    tier: 7,
+    wave: 250,
   }),
   'Recovery Package Chance': Object.freeze({
-    Tier: 2,
-    Wave: 750,
+    tier: 2,
+    wave: 750,
   }),
   'Ultimate Crit': Object.freeze({
-    Tier: 14,
-    Wave: 50,
+    tier: 14,
+    wave: 50,
   }),
 });

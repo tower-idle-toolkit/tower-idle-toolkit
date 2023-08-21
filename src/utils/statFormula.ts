@@ -1,3 +1,11 @@
+/**
+ * @function getStats - gets the stats for the current wave
+ *
+ * @param currentTier - number - the tier to generate stats for
+ * @param currentWave - number - the wave to generate stats for
+ * @param tournament - boolean - if it is currently a tournament (+ tier)
+ * @returns Object - { DAMAGE: number, HP: number } - an object containing the base DAMAGE and HP of a Basic enemy on the wave, with 0 stat skips and no lab modifiers or perks applied
+ */
 export const getStats = (
   currentTier: number,
   currentWave: number,

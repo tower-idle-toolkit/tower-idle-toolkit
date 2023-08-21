@@ -1,7 +1,31 @@
+import { roundHundredths } from 'utils/formatValue';
+import {
+  SMART_MISSILES,
+  DEATH_WAVE,
+  GOLDEN_TOWER,
+  BLACK_HOLE,
+  INNER_LAND_MINES,
+  CHAIN_LIGHTNING,
+  POISON_SWAMP,
+  CHRONO_FIELD,
+  SPOTLIGHT,
+} from './ultimateWeapons';
+/**
+ * @constant STANDARD_PERK_CHANCE - Chance to pick a Standard Perk for a slot if there are still options left in all 3 categories.
+ */
 export const STANDARD_PERK_CHANCE = 65;
+/**
+ * @constant ULTIMATE_PERK_CHANCE - Chance to pick a Ultimate Perk for a slot if there are still options left in all 3 categories
+ */
 export const ULTIMATE_PERK_CHANCE = 20;
+/**
+ * @constant TRADEOFF_PERK_CHANCE - Chance to pick a Tradeoff Perk for a slot if there are still options left in all 3 categories.
+ */
 export const TRADEOFF_PERK_CHANCE = 15;
 
+/**
+ * @enum - PerkCategories - Enum containing the categories of perks
+ */
 export enum PerkCategories {
   STANDARD = 'STANDARD',
   ULTIMATE = 'ULTIMATE',
@@ -18,14 +42,30 @@ type ValueFormula = ({
   tradeoffPerkLabLevel: number;
 }) => number;
 
+/**
+ * @type Perk - The format of a Perk
+ *
+ * ```ts
+ * {
+ *   category: PerkCategories; // enum containing STANDARD, ULTIMATE, TRADEOFF
+ *   maxLevel: number; // how many times you can pick the perk
+ *   getValue: ({ count, standardPerkLabLevel, tradeoffPerkLabLevel }) => number; // given perk count and lab levels, return the value of the perk
+ *   getDebuff: () => value // return the debuff value of the perk (for tradeoffs, everything else returns 0). Implemented as a function in case we get future labs.
+ *   formatValue: (value: number, debuff: number) => string; // convert the values from getValue and getDebuff into the English text shown in game
+ * }
+ * ```
+ */
 export type Perk = {
   category: PerkCategories;
   maxLevel: number;
   getValue: ValueFormula;
-  getDebuff: ValueFormula;
+  getDebuff: () => number;
   formatValue: (value: number, debuff: number) => string;
 };
 
+/**
+ * @enum - StandardPerk - Enum of the Standard Perks
+ */
 export enum StandardPerk {
   MAX_HEALTH = 'MAX_HEALTH',
   DAMAGE = 'DAMAGE',
@@ -42,18 +82,48 @@ export enum StandardPerk {
   INCREASE_GAME_SPEED = 'INCREASE_GAME_SPEED',
 }
 
+/**
+ * @enum - UltimatePerk - Enum of the Ultimate Perks
+ */
 export enum UltimatePerk {
-  SMART_MISSILES = 'SMART_MISSILES',
-  POISON_SWAMP = 'POISON_SWAMP',
-  DEATH_WAVE = 'DEATH_WAVE',
-  GOLDEN_TOWER = 'GOLDEN_TOWER',
-  CHAIN_LIGHTNING = 'CHAIN_LIGHTNING',
-  CHRONO_FIELD = 'CHRONO_FIELD',
-  INNER_LAND_MINES = 'INNER_LAND_MINES',
-  BLACK_HOLE = 'BLACK_HOLE',
-  SPOTLIGHT = 'SPOTLIGHT',
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  SMART_MISSILES = 'Smart Missiles',
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  POISON_SWAMP = 'Poison Swamp',
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  DEATH_WAVE = 'Death Wave',
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  GOLDEN_TOWER = 'Golden Tower',
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  CHAIN_LIGHTNING = 'Chain Lightning',
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  CHRONO_FIELD = 'Chrono Field',
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  INNER_LAND_MINES = 'Inner Land Mines',
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  BLACK_HOLE = 'Black Hole',
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  SPOTLIGHT = 'Spotlight',
 }
 
+/**
+ * @constant UltimateWeaponToEnum - Maps Ultimate Weapons to their matching Enum member
+ */
+export const UltimateWeaponToEnum = {
+  [SMART_MISSILES.name]: UltimatePerk.SMART_MISSILES,
+  [POISON_SWAMP.name]: UltimatePerk.POISON_SWAMP,
+  [DEATH_WAVE.name]: UltimatePerk.DEATH_WAVE,
+  [GOLDEN_TOWER.name]: UltimatePerk.GOLDEN_TOWER,
+  [CHAIN_LIGHTNING.name]: UltimatePerk.CHAIN_LIGHTNING,
+  [CHRONO_FIELD.name]: UltimatePerk.CHRONO_FIELD,
+  [INNER_LAND_MINES.name]: UltimatePerk.INNER_LAND_MINES,
+  [BLACK_HOLE.name]: UltimatePerk.BLACK_HOLE,
+  [SPOTLIGHT.name]: UltimatePerk.SPOTLIGHT,
+};
+
+/**
+ * @enum - TradeoffPerk - Enum of the Tradeoff perks
+ */
 export enum TradeoffPerk {
   DAMAGE_BOSS_HEALTH = 'DAMAGE_BOSS_HEALTH',
   COINS_HEALTH = 'COINS_HEALTH',
@@ -77,10 +147,11 @@ const additivePerk =
   ({ count, standardPerkLabLevel }) =>
     base * count * (1 + standardPerkLabLevel / 100);
 
-const roundHundredths = (value: number) =>
-  (Math.round(value * 100) / 100).toFixed(2);
 const noDebuff = () => 0;
 
+/**
+ * @constant StandardPerks - A map of a value in the StandardPerk enum to the Perk Config for that perk
+ */
 export const StandardPerks: Readonly<{
   [key in StandardPerk]: Readonly<Perk>;
 }> = Object.freeze({
@@ -182,6 +253,9 @@ export const StandardPerks: Readonly<{
   }),
 });
 
+/**
+ * @constant UltimatePerks - A map of the value in the UltimatePerk enum to the Perk config for that perk
+ */
 export const UltimatePerks: Readonly<{
   [key in UltimatePerk]: Readonly<Perk>;
 }> = Object.freeze({
@@ -255,6 +329,9 @@ const tradeoffBuff =
   ({ tradeoffPerkLabLevel }) =>
     base * (1 + tradeoffPerkLabLevel / 100);
 
+/**
+ * @constant TradeoffPerks - A map of the value in the TradeoffPerk enum to the Perk Config for that perk
+ */
 export const TradeoffPerks: Readonly<{
   [key in TradeoffPerk]: Readonly<Perk>;
 }> = Object.freeze({
@@ -361,6 +438,9 @@ export const TradeoffPerks: Readonly<{
   }),
 });
 
+/**
+ * @constant Perks - A union map of all the Perk Enums to their Perk configs
+ */
 export const Perks: Readonly<{
   [key in StandardPerk | UltimatePerk | TradeoffPerk]: Readonly<Perk>;
 }> = Object.freeze({
@@ -368,3 +448,4 @@ export const Perks: Readonly<{
   ...UltimatePerks,
   ...TradeoffPerks,
 });
+

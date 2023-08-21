@@ -1,3 +1,12 @@
+/**
+ * @function nextPerkWave - Computes the wave the next perk can be selected
+ *
+ * Takes an object with the params:
+ * @param currentPerkQuantity - number - how many perks are currently selected
+ * @param waveRequirementLab - number - the level of the wave requirement lab. If level 7, enter 7.
+ * @param waveRequirementPerkValue - number - the positive value of the % displayed on the Perk Wave Requirement perk. if -75%, enter 75. This can be obtained by `Perks[StandardPerk.PERK_WAVE_REQUIREMENT].getValue({ count, standardPerkLabLevel })`
+ * @returns number - the wave you can select the next perk. It may be lower than the current wave if you just took a Perk Wave Requirement perk, as it is retroactive.
+ */
 export const nextPerkWave = ({
   currentPerkQuantity,
   waveRequirementLab,

@@ -1,5 +1,12 @@
 import { WAVE_ACCELERATOR_CARD } from 'constants/cards';
 
+/**
+ * @function getRealGameSpeed - Return the actual speed multiplier from a displayed game speed, because the number in the UI is not the actual multiplier
+ *
+ * @param displayedGameSpeed - number - the game speed displayed in the ui.
+ * @param introSprint - boolean - if the intro sprint card is currently active
+ * @returns number - the actual game speed multiplier to use for math
+ */
 export const getRealGameSpeed = (
   displayedGameSpeed: number,
   introSprint: boolean = false,
@@ -75,19 +82,48 @@ export const getRealGameSpeed = (
     realGameSpeed = 4.98400020599;
   } else if (displayedGameSpeed <= 6.24) {
     realGameSpeed = 4.992000103;
-  } else if (displayedGameSpeed <= 6.25) {
+  } else if (displayedGameSpeed <= 6.25 || displayedGameSpeed === 6.3) {
     realGameSpeed = 5;
   }
   return realGameSpeed;
 };
 
+/**
+ * @constant WAVE_DURATION - How long the base wave time is where enemies spawn, excluding the cooldown, before applying game speed - note that Device Frame Drift may extend this slightly.
+ */
 export const WAVE_DURATION = 26;
+
+/**
+ * @constant NORMAL_WAVE_COOLDOWN - The base length for the cooldown (green bar) between waves lasts on non-boss waves, outside of tournaments, and without Wave Accelerator, before applying game speed - note that Device Frame Drift may extend this slightly.
+ */
 export const NORMAL_WAVE_COOLDOWN = 8;
+
+/**
+ * @constant BOSS_WAVE_COOLDOWN - The base length for the cooldown (green bar) between waves lasts on boss waves, outside of tournaments, and without Wave Accelerator, before applying game speed - note that Device Frame Drift may extend this slightly.
+ */
 export const BOSS_WAVE_COOLDOWN = 12;
+
+/**
+ * @constant TOURNAMENT_COOLDOWN_MODIFIER - The multiplier reduction on the Cooldown (green bar) between waves in tournaments
+ */
 export const TOURNAMENT_COOLDOWN_MODIFIER = 0.5;
 
+/**
+ * @function isBossWave - If the specified wave is a boss wave
+ *
+ * @param wave - number - The wave number
+ * @returns boolean - If it is a boss wave
+ */
 export const isBossWave = (wave: number) => wave % 10 === 0;
 
+/**
+ * @function getWaveCooldown - Get the cooldown for the wave, without game speed applied, and without accounting for Device Frame Drift
+ *
+ * @param wave - number - The wave for which to get the cooldown
+ * @param waveAccelerator - number - The level of the Wave Accelerator card (0 for unequipped, 1-7 for card stars; invalid values will be treated as 0
+ * @param tournament - boolean - If a tournament is active, speed up the cooldown by the tournament modifier
+ * @returns number - The cooldown time, before game speed is applied, and without accounting for Device Frame Drift
+ */
 export const getWaveCooldown = (
   wave: number,
   waveAccelerator: number,
@@ -102,6 +138,14 @@ export const getWaveCooldown = (
   return baseCooldown * waModifier * tournamentModifier;
 };
 
+/**
+ * @function getInGameWaveTime - Get the "Game" time the wave takes
+ *
+ * @param wave - number - The wave for which to get the time
+ * @param waveAccelerator - number - The stars of the Wave Accelerator card, 0 for unequipped
+ * @param tournament - boolean - If a tournament is active, it speeds up the cooldown portion
+ * @returns number - The number of "in game seconds" the wave lasts for.
+ */
 export const getInGameWaveTime = (
   wave: number,
   waveAccelerator: number,
@@ -110,6 +154,17 @@ export const getInGameWaveTime = (
   return WAVE_DURATION + getWaveCooldown(wave, waveAccelerator, tournament);
 };
 
+/**
+ * @function getRealWaveTime - Get the real world time a wave takes, accounting for game speed, but not accounting for Device Frame Drift.
+ *
+ * Takes an object with the params:
+ * @param wave - number - The wave
+ * @param displayedGameSpeed - number - The displayed game speed - use the value in game. For perks, you can use the "actual" value pre-rounding (6.25 with 1.25 perk bonus)
+ * @param introSprint - boolean - If the intro sprint card is active
+ * @param waveAccelerator - number - The stars of the Wave Accelerator card (0-7, 0 is unequipped)
+ * @param tournament - boolean - If it is a tournament, speed up the cooldown.
+ * @returns number - The actual seconds the wave took, not accounting for Device Frame Drift.
+ */
 export const getRealWaveTime = ({
   wave,
   displayedGameSpeed,

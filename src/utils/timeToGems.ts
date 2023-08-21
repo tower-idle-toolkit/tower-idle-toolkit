@@ -1,7 +1,16 @@
+/**
+ * @constant GEM_THRESHOLDS - The thresholds where Gems change, in seconds
+ */
 export const GEM_THRESHOLDS = Object.freeze([
   1, 60, 3600, 86400, 604800, 2592000, 7776000,
 ]);
 
+/**
+ * @function timeToGems - Tells you how many gems to rush a lab of a specific length
+ *
+ * @param seconds - number - the length of the lab in seconds
+ * @returns number - how many gems it costs to rush the lab
+ */
 export const timeToGems = (seconds: number) => {
   let gems = 0;
   if (seconds > 31104000) {

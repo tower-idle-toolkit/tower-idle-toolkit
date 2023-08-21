@@ -1,6 +1,18 @@
 const EB_MODIFIER = 3.56;
 const NO_EB_MODIFIER = 2;
 
+/**
+ * @type Spawns - Spawns are objects containing:
+ * {
+ *   spawns: number; - the total spawns
+ *   basic: number; - basic enemy spawns
+ *   fast: number; - basic enemy spawns
+ *   tank: number; - tank enemy spawns
+ *   ranged: number; - ranged enemy spawns
+ *   boss: number; - boss enemy spawns
+ * }
+ * Note that protectors are omitted, as they are semi-random and inconsistent, and also rare enough to be negligible in most use-cases.
+ */
 export type Spawns = {
   spawns: number;
   basic: number;
@@ -10,6 +22,9 @@ export type Spawns = {
   boss: number;
 };
 
+/**
+ * @constant SPAWN_THRESHOLDS - The thresholds when enemy stats change. This may be spawn rate changing or the spawn chance for an individual enemy type. Note again that while protectors are omitted from spawn calculations, these may still be the thresholds protector chance changes.
+ */
 export const SPAWN_THRESHOLDS = Object.freeze([
   0,
   1,
@@ -46,6 +61,13 @@ export const SPAWN_THRESHOLDS = Object.freeze([
   Number.POSITIVE_INFINITY,
 ]);
 
+/**
+ * @function waveSpawns - The predicted average spawns for the current wave, at 5 game speed and 60 fps. Note that game speed and device fps can both change this.
+ *
+ * @param wave - number - the wave to generate spawn data for
+ * @param enemyBalance - boolean - if the enemy balance card is equipped
+ * @returns Spawns - the spawn data for the current wave, in the format specified by type Spawns
+ */
 export const waveSpawns = (
   wave: number,
   enemyBalance: boolean,
@@ -230,6 +252,13 @@ export const waveSpawns = (
   return spawnData;
 };
 
+/**
+ * @function totalSpawns - Get the total spawns from wave 1 to any current wave.
+ *
+ * @param wave - number - the wave to sum spawns up until
+ * @param enemyBalance - boolean - if the enemy balance card is equipped
+ * @returns Spawns - spawn data in the format specified by type Spawns
+ */
 export const totalSpawns = (
   wave: number,
   enemyBalance: boolean,

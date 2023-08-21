@@ -4,6 +4,12 @@ const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 const YEAR = DAY * 365;
 
+/**
+ * @function formatTime - Converts seconds to a nicely formatted string
+ *
+ * @param time - number in seconds
+ * @returns string - nicely formatted as <> years, <> days, <>h, <>m, <>s, omitting values as necessary for clarity
+ */
 export const formatTime = (time: number) => {
   const years = Math.floor(time / YEAR);
   const afterYears = time % YEAR;

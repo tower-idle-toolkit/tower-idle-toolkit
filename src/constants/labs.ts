@@ -1,16 +1,52 @@
 import labJson from 'data/labs.json';
 
+/**
+ * @type LabLevel - A LabLevel has the format
+ * ```ts
+ * { DURATION: number; COST: number; }
+ * ```
+ */
 export type LabLevel = {
   DURATION: number;
   COST: number;
 };
+
+/**
+ * @type Lab - A Lab config maps valid levels (1..max) to LabLevels
+ * */
 export type Lab = {
   [level: number]: Readonly<LabLevel>;
 };
+
+/**
+ * @type LabMap - A LabMap maps the English Lab Name to the Lab config
+ */
 export type LabMap = {
   [name: string]: Readonly<Lab>;
 };
 
+/**
+ * @constnat Labs - A Map of All Labs in the game
+ *
+ * Lab names are all in English and match Tower Data Collection.
+ *
+ * This is a map of lab names, and each contain a nested object mapping their levels to an Object containing DURATION and COST.
+ *
+ * ```ts
+ * {
+ *   [labName: string]: {
+ *     [level: number]: {
+ *       DURATION: number;
+ *       COST: number;
+ *     } | undefined
+ *   } | undefined
+ * }
+ * ```
+ *
+ *
+ * Note that Lab Speed and Lab Discount already have their own modifiers applied to their values, so to
+ * apply relics, you will have to divide out their bonuses, scale the bonus by the relic, and re-apply it
+ */
 export const LABS = Object.freeze(
   Object.entries(labJson).reduce((labMap, [name, lab]: any) => {
     // eslint-disable-next-line no-param-reassign
@@ -30,6 +66,12 @@ export const LABS = Object.freeze(
   }, {} as LabMap),
 );
 
+/**
+ * @function maxLevel - gets the max level of a lab
+ *
+ * @param labName - the name of the lab in english
+ * @returns the max level of the lab, or 0 if the lab does not exist
+ */
 export const maxLevel = (labName: string) => {
   const lab = LABS[labName];
   if (!lab) return 0;
@@ -39,8 +81,14 @@ export const maxLevel = (labName: string) => {
   }, 0);
 };
 
+/**
+ * @constant ALL_LABS - A list of all the names of valid labs
+ */
 export const ALL_LABS = Object.freeze(Object.keys(LABS));
 
+/**
+ * @constant MAX_INTEREST_LEVELS - A map of Max Interest lab levels to its value
+ */
 export const MAX_INTEREST_LEVELS: { [level: number]: number | undefined } =
   Object.freeze({
     0: 50,
@@ -73,6 +121,15 @@ const levelToAddition =
   (level: number) =>
     base + level * scale;
 
+/**
+ * @constant LabValues -  A map of Lab Names to a function to get its value for any given level.
+ *
+ * i.e. to find the value of a level 7 Max Interest Lab, use
+ * ```ts
+ * LabValues['Max Interest'](7)
+ * ```
+ * For labs without an obvious numeric value (i.e. unlock labs), it just returns the level of the lab.
+ */
 export const LabValues: Readonly<{
   [lab: string]: (level: number) => number | undefined;
 }> = Object.freeze({
