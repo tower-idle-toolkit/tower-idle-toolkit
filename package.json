@@ -5,6 +5,7 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
+    "prepublishOnly": "npm run build",
     "build": "rimraf build && tspc",
     "doc": "typedoc src/index.ts",
     "lint": "eslint src --ext ts,js",
