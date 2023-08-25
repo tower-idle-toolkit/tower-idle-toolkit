@@ -1,9 +1,12 @@
 {
   "name": "tower-idle-toolkit",
-  "version": "0.20.4-0",
+  "version": "0.20.4-1",
   "description": "Toolkit of utilities for The Tower - Idle Tower Defense game by Tech Tree Games",
   "main": "build/index.js",
   "types": "build/index.d.ts",
+  "repository": {
+    "url": "https://github.com/tower-idle-toolkit/tower-idle-toolkit"
+  },
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "rimraf build && tspc",
