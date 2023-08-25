@@ -32,7 +32,7 @@ export enum PerkCategories {
   TRADEOFF = 'TRADEOFF',
 }
 
-type ValueFormula = ({
+export type ValueFormula = ({
   count,
   standardPerkLabLevel,
   tradeoffPerkLabLevel,
