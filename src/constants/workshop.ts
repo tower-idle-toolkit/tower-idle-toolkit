@@ -1,3 +1,35 @@
+import workshopLevels from 'data/workshop.json';
+
+export type WorkshopLevel = {
+  value: number;
+  cash: number;
+  coins: number;
+};
+export type WorkshopUpgrade = {
+  [level: string]: WorkshopLevel | undefined;
+};
+export type WorkshopLevels = {
+  [Upgrade: string]: WorkshopUpgrade | undefined;
+};
+
+/**
+ * @constant WORKSHOP_LEVELS - Every workshop level in the game.
+ *
+ * Format:
+ * ```ts
+ * {
+ *   [Upgrade: string]: {
+ *     [level: string]: {
+ *       value: number;
+ *       cash: number;
+ *       coins: number;
+ *     }
+ *   }
+ * }
+ * ```
+ */
+export const WORKSHOP_LEVELS: WorkshopLevels = workshopLevels;
+
 const COIN = 1;
 const K = 1000 * COIN;
 const M = 1000 * K;
