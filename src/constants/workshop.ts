@@ -861,7 +861,7 @@ export const BASE_ENEMY_ATTACK_LEVEL_SKIP_COST = 123.43 * QUINT;
  * @constant ENEMY_ATTACK_LEVEL_SKIP_WORKSHOP - Workshop Enemy Attack Level Skip upgrade { name, min, max, quantity, and cost } with no modifiers or discounts
  */
 export const ENEMY_ATTACK_LEVEL_SKIP_WORKSHOP = upgrade(
-  'Enemy ATTACK Level Skip',
+  'Enemy Attack Level Skip',
   BASE_ENEMY_ATTACK_LEVEL_SKIP_MIN,
   BASE_ENEMY_ATTACK_LEVEL_SKIP_MAX,
   BASE_ENEMY_ATTACK_LEVEL_SKIP_QUANTITY,
@@ -1110,3 +1110,14 @@ export const WORKSHOP_UNLOCKS = Object.freeze({
   Defense: DEFENSE_UNLOCKS,
   Utility: UTILITY_UNLOCKS,
 });
+
+/**
+ * @function maxWorkshopLevel - gets the max level of a workshop
+ *
+ * @param name - The name of the upgrade
+ * @returns The max level of the upgrade
+ */
+export const maxWorkshopLevel = (name: string) => {
+  const levels = Object.keys(WORKSHOP_LEVELS[name] || {});
+  return parseInt(levels.at(-1) || '0', 10);
+};
