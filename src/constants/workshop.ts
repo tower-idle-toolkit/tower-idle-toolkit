@@ -911,3 +911,202 @@ export const WORKSHOP_UPGRADES = Object.freeze({
   ...DEFENSE_UPGRADES,
   ...UTILITY_UPGRADES,
 });
+
+/**
+ * @constant ATTACK_UNLOCKS - An array of { name: string, cost: number, upgrades: string[] } of workshop unlocks
+ *  - The first entry is Default, the ones already unlocked on a fresh respec
+ */
+export const ATTACK_UNLOCKS = Object.freeze([
+  Object.freeze({
+    name: 'Default',
+    cost: 0,
+    upgrades: Object.freeze([DAMAGE_WORKSHOP.name, ASPD_WORKSHOP.name]),
+  }),
+  Object.freeze({
+    name: 'Range Upgrades',
+    cost: 50,
+    upgrades: Object.freeze([RANGE_WORKSHOP.name, DPM_WORKSHOP.name]),
+  }),
+  Object.freeze({
+    name: 'Multishot Upgrades',
+    cost: 400,
+    upgrades: Object.freeze([
+      MULTISHOT_CHANCE_WORKSHOP.name,
+      MULTISHOT_TARGETS_WORKSHOP.name,
+    ]),
+  }),
+  Object.freeze({
+    name: 'Rapid Fire Upgrades',
+    cost: 1500,
+    upgrades: Object.freeze([
+      RAPIDFIRE_CHANCE_WORKSHOP.name,
+      RAPIDFIRE_DURATION_WORKSHOP.name,
+    ]),
+  }),
+  Object.freeze({
+    name: 'Bounce Shot Upgrades',
+    cost: 10 * K,
+    upgrades: Object.freeze([
+      BOUNCE_SHOT_CHANCE_WORKSHOP.name,
+      BOUNCE_SHOT_TARGETS_WORKSHOP.name,
+      BOUNCE_SHOT_RANGE_WORKSHOP.name,
+    ]),
+  }),
+  Object.freeze({
+    name: 'Super Critical Hits',
+    cost: 100 * M,
+    upgrades: Object.freeze([SCC_WORKSHOP.name, SCM_WORKSHOP.name]),
+  }),
+  Object.freeze({
+    name: 'Rend Armor',
+    cost: 500 * B,
+    upgrades: Object.freeze([
+      REND_CHANCE_WORKSHOP.name,
+      REND_MULT_WORKSHOP.name,
+    ]),
+  }),
+]);
+
+/**
+ * @constant DEFENSE_UNLOCKS - An array of { name: string, cost: number, upgrades: string[] } of workshop unlocks
+ *  - The first entry is Default, the ones already unlocked on a fresh respec
+ */
+export const DEFENSE_UNLOCKS = Object.freeze([
+  Object.freeze({
+    name: 'Default',
+    cost: 0,
+    upgrades: Object.freeze([HP_WORKSHOP.name, REGEN_WORKSHOP.name]),
+  }),
+  Object.freeze({
+    name: 'Defense Upgrades',
+    cost: 75,
+    upgrades: Object.freeze([
+      DEF_PERCENT_WORKSHOP.name,
+      DEF_ABSOLUTE_WORKSHOP.name,
+    ]),
+  }),
+  Object.freeze({
+    name: 'Thorn Upgrades',
+    cost: 500,
+    upgrades: Object.freeze([THORN_DAMAGE_WORKSHOP.name]),
+  }),
+  Object.freeze({
+    name: 'Lifesteal Upgrades',
+    cost: 2 * K,
+    upgrades: Object.freeze([LIFESTEAL_WORKSHOP.name]),
+  }),
+  Object.freeze({
+    name: 'Knockback Upgrades',
+    cost: 5 * K,
+    upgrades: Object.freeze([
+      KNOCKBACK_CHANCE_WORKSHOP.name,
+      KNOCKBACK_FORCE_WORKSHOP.name,
+    ]),
+  }),
+  Object.freeze({
+    name: 'Orbs Upgrades',
+    cost: 15 * K,
+    upgrades: Object.freeze([
+      ORB_SPEED_WORKSHOP.name,
+      ORB_QUANTITY_WORKSHOP.name,
+    ]),
+  }),
+  Object.freeze({
+    name: 'Shockwave Upgrades',
+    cost: 100 * K,
+    upgrades: Object.freeze([
+      SHOCKWAVE_SIZE_WORKSHOP.name,
+      SHOCKWAVE_FREQUENCY_WORKSHOP.name,
+    ]),
+  }),
+  Object.freeze({
+    name: 'Land Mine Upgrades',
+    cost: 400 * K,
+    upgrades: Object.freeze([
+      LAND_MINE_DAMAGE_WORKSHOP.name,
+      LAND_MINE_CHANCE_WORKSHOP.name,
+      LAND_MINE_RADIUS_WORKSHOP.name,
+    ]),
+  }),
+  Object.freeze({
+    name: 'Death Defy',
+    cost: 1.5 * M,
+    upgrades: Object.freeze([DEATH_DEFY_WORKSHOP.name]),
+  }),
+  Object.freeze({
+    name: 'The Wall',
+    cost: 500 * M,
+    upgrades: Object.freeze([
+      WALL_HEALTH_WORKSHOP.name,
+      WALL_REBUILD_WORKSHOP.name,
+    ]),
+  }),
+]);
+
+/**
+ * @constant UTILITY_UNLOCKS - An array of { name: string, cost: number, upgrades: string[] } of workshop unlocks
+ *  - The first entry is Default, the ones already unlocked on a fresh respec
+ */
+export const UTILITY_UNLOCKS = Object.freeze([
+  Object.freeze({
+    name: 'Default',
+    cost: 0,
+    upgrades: Object.freeze([]),
+  }),
+  Object.freeze({
+    name: 'Cash Bonuses',
+    cost: 40,
+    upgrades: Object.freeze([
+      CASH_BONUS_WORKSHOP.name,
+      CASH_PER_WAVE_WORKSHOP.name,
+    ]),
+  }),
+  Object.freeze({
+    name: 'Coin Bonuses',
+    cost: 100,
+    upgrades: Object.freeze([
+      COINS_PER_KILL_WORKSHOP.name,
+      COINS_PER_WAVE_WORKSHOP.name,
+    ]),
+  }),
+  Object.freeze({
+    name: 'Upgrade Chances',
+    cost: 800,
+    upgrades: Object.freeze([
+      FREE_ATTACK_UPGRADE_WORKSHOP.name,
+      FREE_DEFENSE_UPGRADE_WORKSHOP.name,
+      FREE_UTILITY_UPGRADE_WORKSHOP.name,
+    ]),
+  }),
+  Object.freeze({
+    name: 'Interest / Wave',
+    cost: 5 * K,
+    upgrades: Object.freeze([INTEREST_WORKSHOP.name]),
+  }),
+  Object.freeze({
+    name: 'Recovery Package',
+    cost: 1.5 * M,
+    upgrades: Object.freeze([
+      RECOVERY_PACKAGE_AMOUNT_WORKSHOP.name,
+      RECOVERY_PACKAGE_MAX_WORKSHOP.name,
+      RECOVERY_PACKAGE_CHANCE_WORKSHOP.name,
+    ]),
+  }),
+  Object.freeze({
+    name: 'Enemy Level Skips',
+    cost: 1 * B,
+    upgrades: Object.freeze([
+      ENEMY_ATTACK_LEVEL_SKIP_WORKSHOP.name,
+      ENEMY_HEALTH_LEVEL_SKIP_WORKSHOP.name,
+    ]),
+  }),
+]);
+
+/**
+ * @constant WORKSHOP_UNLOCKS - an object mapping Attack, Defense, and Utility to their respective unlocks
+ */
+export const WORKSHOP_UNLOCKS = Object.freeze({
+  Attack: ATTACK_UNLOCKS,
+  Defense: DEFENSE_UNLOCKS,
+  Utility: UTILITY_UNLOCKS,
+});
