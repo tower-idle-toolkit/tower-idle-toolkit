@@ -128,7 +128,7 @@ export const BASE_RANGE_COST = 1.46 * M;
  * @constant RANGE_WORKSHOP - Workshop Attack Range upgrade { name, min, max, quantity, and cost } with no modifiers or discounts
  */
 export const RANGE_WORKSHOP = upgrade(
-  'Attack Range',
+  'Range',
   BASE_RANGE_MIN,
   BASE_RANGE_MAX,
   BASE_RANGE_QUANTITY,
@@ -398,7 +398,7 @@ export const BASE_DEF_PERCENT_COST = 2.77 * M;
  * @constant DEF_PERCENT_WORKSHOP - Workshop Defense % upgrade { name, min, max, quantity, and cost } with no modifiers or discounts
  */
 export const DEF_PERCENT_WORKSHOP = upgrade(
-  'Defense %',
+  'Defense Percent',
   BASE_DEF_PERCENT_MIN,
   BASE_DEF_PERCENT_MAX,
   BASE_DEF_PERCENT_QUANTITY,
@@ -430,7 +430,7 @@ export const BASE_THORN_DAMAGE_COST = 2.33 * M;
  * @constant THORN_DAMAGE_WORKSHOP - Workshop Thorn Damage upgrade { name, min, max, quantity, and cost } with no modifiers or discounts
  */
 export const THORN_DAMAGE_WORKSHOP = upgrade(
-  'Thorn Damage',
+  'Thorns',
   BASE_THORN_DAMAGE_MIN,
   BASE_THORN_DAMAGE_MAX,
   BASE_THORN_DAMAGE_QUANTITY,
