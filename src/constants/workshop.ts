@@ -1,4 +1,5 @@
 import workshopLevels from 'data/workshop.json';
+import { formatValue, round, roundHundredths } from 'utils';
 
 export type WorkshopLevel = {
   value: number;
@@ -1120,4 +1121,119 @@ export const WORKSHOP_UNLOCKS = Object.freeze({
 export const maxWorkshopLevel = (name: string) => {
   const levels = Object.keys(WORKSHOP_LEVELS[name] || {});
   return parseInt(levels.at(-1) || '0', 10);
+};
+
+const percent = (value: number, places: number = 2) => `${round(value, places)}%`;
+const time = (value: number, places: number = 2) => `${round(value, places)}s`;
+const distance = (value: number, places: number = 2) => `${round(value, places)}M`;
+const mult = (value: number, places: number = 2) => `${round(value, places)}x`;
+
+/**
+ * @function formatWorkshopValue - take the name of a workshop, and its actual value (from WORKSHOP_LEVELS), and return the display string for it
+ *
+ * @param name - string - the name of the workshop
+ * @param value - number - the actual value from WORKSHOP_LEVELS
+ * @returns string - a nicely formatted string for the value
+ */
+export const formatWorkshopValue = (name: string, value: number) => {
+  switch (name) {
+    case DAMAGE_WORKSHOP.name:
+      return formatValue(value);
+    case ASPD_WORKSHOP.name:
+      return roundHundredths(value);
+    case CRIT_CHANCE_WORKSHOP.name:
+      return percent(value);
+    case CRIT_FACTOR_WORKSHOP.name:
+      return mult(value);
+    case RANGE_WORKSHOP.name:
+      return distance(value * 10);
+    case DPM_WORKSHOP.name:
+      return percent(value);
+    case MULTISHOT_CHANCE_WORKSHOP.name:
+      return percent(value);
+    case MULTISHOT_TARGETS_WORKSHOP.name:
+      return value.toFixed(0);
+    case RAPIDFIRE_CHANCE_WORKSHOP.name:
+      return percent(value);
+    case RAPIDFIRE_DURATION_WORKSHOP.name:
+      return time(value);
+    case BOUNCE_SHOT_CHANCE_WORKSHOP.name:
+      return percent(value);
+    case BOUNCE_SHOT_TARGETS_WORKSHOP.name:
+      return value.toFixed(0);
+    case BOUNCE_SHOT_RANGE_WORKSHOP.name:
+      return distance(value);
+    case SCC_WORKSHOP.name:
+      return percent(value);
+    case SCM_WORKSHOP.name:
+      return mult(value);
+    case REND_CHANCE_WORKSHOP.name:
+      return percent(value);
+    case REND_MULT_WORKSHOP.name:
+      return percent(value * 100);
+    case HP_WORKSHOP.name:
+      return formatValue(value);
+    case REGEN_WORKSHOP.name:
+      return formatValue(value);
+    case DEF_PERCENT_WORKSHOP.name:
+      return percent(value);
+    case DEF_ABSOLUTE_WORKSHOP.name:
+      return formatValue(value);
+    case THORN_DAMAGE_WORKSHOP.name:
+      return percent(value, 0);
+    case LIFESTEAL_WORKSHOP.name:
+      return percent(value);
+    case KNOCKBACK_CHANCE_WORKSHOP.name:
+      return percent(value);
+    case KNOCKBACK_FORCE_WORKSHOP.name:
+      return roundHundredths(value);
+    case ORB_SPEED_WORKSHOP.name:
+      return roundHundredths(value * 10);
+    case ORB_QUANTITY_WORKSHOP.name:
+      return value.toFixed(0);
+    case SHOCKWAVE_SIZE_WORKSHOP.name:
+      return roundHundredths(value);
+    case SHOCKWAVE_FREQUENCY_WORKSHOP.name:
+      return time(value);
+    case LAND_MINE_CHANCE_WORKSHOP.name:
+      return percent(value);
+    case LAND_MINE_DAMAGE_WORKSHOP.name:
+      return percent(value);
+    case LAND_MINE_RADIUS_WORKSHOP.name:
+      return roundHundredths(value);
+    case DEATH_DEFY_WORKSHOP.name:
+      return percent(value);
+    case WALL_HEALTH_WORKSHOP.name:
+      return percent(value);
+    case WALL_REBUILD_WORKSHOP.name:
+      return time(value, 0);
+    case CASH_BONUS_WORKSHOP.name:
+      return mult(value);
+    case CASH_PER_WAVE_WORKSHOP.name:
+      return formatValue(value);
+    case COINS_PER_KILL_WORKSHOP.name:
+      return mult(value);
+    case COINS_PER_WAVE_WORKSHOP.name:
+      return formatValue(value);
+    case FREE_ATTACK_UPGRADE_WORKSHOP.name:
+      return percent(value);
+    case FREE_DEFENSE_UPGRADE_WORKSHOP.name:
+      return percent(value);
+    case FREE_UTILITY_UPGRADE_WORKSHOP.name:
+      return percent(value);
+    case INTEREST_WORKSHOP.name:
+      return percent(value);
+    case RECOVERY_PACKAGE_AMOUNT_WORKSHOP.name:
+      return percent(value * 100);
+    case RECOVERY_PACKAGE_MAX_WORKSHOP.name:
+      return mult(value);
+    case RECOVERY_PACKAGE_CHANCE_WORKSHOP.name:
+      return percent(value * 100);
+    case ENEMY_ATTACK_LEVEL_SKIP_WORKSHOP.name:
+      return percent(value * 100);
+    case ENEMY_HEALTH_LEVEL_SKIP_WORKSHOP.name:
+      return percent(value * 100);
+    default:
+      return formatValue(value);
+  }
 };
