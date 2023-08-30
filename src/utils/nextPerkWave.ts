@@ -16,21 +16,19 @@ export const nextPerkWave = ({
   waveRequirementLab: number;
   waveRequirementPerkValue: number;
 }) => {
-  const nextPerk = currentPerkQuantity + 1;
-  let wave = nextPerk * 200;
-  wave -= waveRequirementLab * nextPerk;
-  if (nextPerk > 20) {
-    // 21+ are an additional 50 waves
-    wave += 50 * (nextPerk - 20);
-  }
-  if (nextPerk > 30) {
-    // 31+ are another additional 50 waves
-    wave += 50 * (nextPerk - 30);
-  }
-  if (nextPerk > 40) {
-    // 41+ are another additional 50 waves
-    wave += 50 * (nextPerk - 40);
-  }
+  let currentWave = 0;
   const pwrReduction = 1 - waveRequirementPerkValue / 100;
-  return wave * pwrReduction;
+  for (
+    let currentPerk = 0;
+    currentPerk <= currentPerkQuantity;
+    currentPerk += 1
+  ) {
+    let currentPerkBase = 200 - waveRequirementLab;
+    if (currentPerk > 20) currentPerkBase += 50;
+    if (currentPerk > 30) currentPerkBase += 50;
+    if (currentPerk > 40) currentPerkBase += 50;
+    const currentPerkCost = Math.floor(currentPerkBase * pwrReduction);
+    currentWave += currentPerkCost;
+  }
+  return currentWave;
 };
