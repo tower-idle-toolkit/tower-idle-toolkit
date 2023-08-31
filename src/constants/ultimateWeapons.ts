@@ -24,6 +24,12 @@ export type UltimateWeapon = Readonly<{
       formatValue: (value: number) => string;
     }>;
   }>;
+  plus: Readonly<{
+    name: string;
+    getDescription: (value: number) => string;
+    cost: Readonly<number[]>;
+    values: Readonly<number[]>;
+  }>;
 }>;
 /**
  * @type UltimateWeapns - UltimateWeapons type maps the Ultimate Weapon English name to its associated config
@@ -31,6 +37,19 @@ export type UltimateWeapon = Readonly<{
 export type UltimateWeapons = Readonly<{
   [UltimateWeapon: string]: UltimateWeapon;
 }>;
+
+const BASE_400 = Object.freeze([
+  0, 400, 500, 610, 730, 860, 1000, 1150, 1300, 1500, 1700,
+]);
+const BASE_300 = Object.freeze([
+  0, 300, 375, 475, 600, 725, 925, 1150, 1450, 1800, 2200,
+]);
+/**
+ * @constant PLUS_UNLOCK_COSTS - the cost to unlock each successive Ultimate Weapon Plus upgrade
+ */
+export const PLUS_UNLOCK_COSTS = Object.freeze([
+  500, 625, 750, 975, 1250, 1650, 2200, 2900, 3800,
+]);
 
 const damage = (value: number) => `${value.toFixed(0)}%`;
 const damageTimes = (value: number) => `${value.toFixed(0)}x`;
@@ -121,6 +140,13 @@ export const DEATH_WAVE: UltimateWeapon = Object.freeze({
       formatValue: seconds,
     }),
   }),
+  plus: Object.freeze({
+    name: 'Kill Wall',
+    getDescription: (value: number) =>
+      `Spawn an additional Killing Wave that deals damage equal to the current wave HP and persists until it hits ${value} enemies`,
+    cost: BASE_400,
+    values: Object.freeze([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
+  }),
 });
 
 /**
@@ -198,6 +224,13 @@ export const BLACK_HOLE: UltimateWeapon = Object.freeze({
       ]),
       formatValue: seconds,
     }),
+  }),
+  plus: Object.freeze({
+    name: 'Consume',
+    getDescription: (value: number) =>
+      `Each black hole can consume up to ${value} enemies and destroy them instantly (bosses not included)`,
+    cost: BASE_400,
+    values: Object.freeze([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
   }),
 });
 
@@ -294,6 +327,17 @@ export const GOLDEN_TOWER: UltimateWeapon = Object.freeze({
       formatValue: seconds,
     }),
   }),
+  plus: Object.freeze({
+    name: 'Golden Combo',
+    getDescription: (value: number) =>
+      `While Golden Tower is active a combo counter will be visible, each enemy kill adds +1. When Golden Tower finishes you receive extra cash and coins of ${value.toFixed(
+        2,
+      )}% per combo`,
+    cost: BASE_300,
+    values: Object.freeze([
+      0.03, 0.06, 0.09, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33,
+    ]),
+  }),
 });
 
 /**
@@ -379,6 +423,13 @@ export const SMART_MISSILES: UltimateWeapon = Object.freeze({
       formatValue: seconds,
     }),
   }),
+  plus: Object.freeze({
+    name: 'Cover Fire',
+    getDescription: (value: number) =>
+      `Launch one additional missile every ${value} seconds`,
+    cost: BASE_300,
+    values: Object.freeze([13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3]),
+  }),
 });
 
 /**
@@ -462,6 +513,15 @@ export const CHRONO_FIELD: UltimateWeapon = Object.freeze({
       formatValue: seconds,
     }),
   }),
+  plus: Object.freeze({
+    name: 'Chrono Loop',
+    getDescription: (value: number) =>
+      `Add a slowing loop at the inner edge of the Tower's range that reduces the speed of any enemy inside by ${value.toFixed(
+        2,
+      )}%`,
+    cost: BASE_400,
+    values: Object.freeze([10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]),
+  }),
 });
 
 /**
@@ -542,6 +602,15 @@ export const POISON_SWAMP: UltimateWeapon = Object.freeze({
       formatValue: chance,
     }),
   }),
+  plus: Object.freeze({
+    name: 'Death Creep',
+    getDescription: (value: number) =>
+      `Every time poison ticks, the damage is increased by ${value}% of poison swamps base damage`,
+    cost: BASE_300,
+    values: Object.freeze([
+      50, 120, 190, 260, 330, 400, 470, 540, 610, 680, 750,
+    ]),
+  }),
 });
 
 /**
@@ -617,6 +686,17 @@ export const INNER_LAND_MINES: UltimateWeapon = Object.freeze({
       ]),
       formatValue: seconds,
     }),
+  }),
+  plus: Object.freeze({
+    name: 'Charge Mines',
+    getDescription: (value: number) =>
+      `The Damage of Inner Land Mines charge up the longer they're alive, increasing by x${value.toFixed(
+        2,
+      )} per second`,
+    cost: BASE_300,
+    values: Object.freeze([
+      0.5, 1.51, 2.57, 3.76, 5.18, 6.92, 9.09, 11.8, 15.19, 19.37, 24.47,
+    ]),
   }),
 });
 
@@ -694,6 +774,13 @@ export const CHAIN_LIGHTNING: UltimateWeapon = Object.freeze({
       ]),
       formatValue: chance,
     }),
+  }),
+  plus: Object.freeze({
+    name: 'Smite',
+    getDescription: (value: number) =>
+      `Smite a random enemy on screen once every ${value} seconds, dealing damage equal to the current wave HP`,
+    cost: BASE_300,
+    values: Object.freeze([30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10]),
   }),
 });
 
@@ -779,6 +866,13 @@ export const SPOTLIGHT: UltimateWeapon = Object.freeze({
       ]),
       formatValue: quantity,
     }),
+  }),
+  plus: Object.freeze({
+    name: 'Light Range',
+    getDescription: (value: number) =>
+      `Enemies within the spotlight are targetable ${value}% further away than max range`,
+    cost: BASE_400,
+    values: Object.freeze([15, 21, 27, 33, 39, 45, 51, 57, 63, 69, 75]),
   }),
 });
 
