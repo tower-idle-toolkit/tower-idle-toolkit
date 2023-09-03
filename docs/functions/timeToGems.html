@@ -27,13 +27,22 @@
 <div class="tsd-comment tsd-typography"><p>number - the length of the lab in seconds</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><p>number - how many gems it costs to rush the lab</p>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><p>number - how many gems it costs to rush the lab,
+rounded up to the nearest integer</p>
 
 <div class="tsd-comment tsd-typography">
 <h4>Function</h4><p>timeToGems - Tells you how many gems to rush a lab of a specific length</p>
+
+<h4>Remarks</h4><p>The formula works as follows:</p>
+<ul>
+<li>For periods over three hundred and sixty days, the cost is 25000 gems.</li>
+<li>For all periods between one second and three hundred and sixty days
+(inclusive), the cost is a flat amount (depending on the tier) plus a constant cost for
+each second between the current tier and the next.</li>
+</ul>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/tower-idle-toolkit/tower-idle-toolkit/blob/74ec4d3/src/utils/timeToGems.ts#L14">utils/timeToGems.ts:14</a></li></ul></aside></li></ul></section></div>
+<li>Defined in <a href="https://github.com/tower-idle-toolkit/tower-idle-toolkit/blob/2ce96b7/src/utils/timeToGems.ts#L38">utils/timeToGems.ts:38</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
