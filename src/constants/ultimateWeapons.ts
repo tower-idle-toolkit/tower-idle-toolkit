@@ -44,6 +44,9 @@ const BASE_400 = Object.freeze([
 const BASE_300 = Object.freeze([
   0, 300, 375, 475, 600, 725, 925, 1150, 1450, 1800, 2200,
 ]);
+const ALTERNATE_BASE_300 = Object.freeze([
+  0, 300, 360, 430, 510, 620, 750, 900, 1100, 1350,
+]);
 /**
  * @constant PLUS_UNLOCK_COSTS - the cost to unlock each successive Ultimate Weapon Plus upgrade
  */
@@ -333,7 +336,7 @@ export const GOLDEN_TOWER: UltimateWeapon = Object.freeze({
       `While Golden Tower is active a combo counter will be visible, each enemy kill adds +1. When Golden Tower finishes you receive extra cash and coins of ${value.toFixed(
         2,
       )}% per combo`,
-    cost: BASE_300,
+    cost: ALTERNATE_BASE_300,
     values: Object.freeze([
       0.03, 0.06, 0.09, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33,
     ]),
@@ -693,7 +696,7 @@ export const INNER_LAND_MINES: UltimateWeapon = Object.freeze({
       `The Damage of Inner Land Mines charge up the longer they're alive, increasing by x${value.toFixed(
         2,
       )} per second`,
-    cost: BASE_300,
+    cost: ALTERNATE_BASE_300,
     values: Object.freeze([
       0.5, 1.51, 2.57, 3.76, 5.18, 6.92, 9.09, 11.8, 15.19, 19.37, 24.47,
     ]),
