@@ -45,7 +45,7 @@ const BASE_300 = Object.freeze([
   0, 300, 375, 475, 600, 725, 925, 1150, 1450, 1800, 2200,
 ]);
 const ALTERNATE_BASE_300 = Object.freeze([
-  0, 300, 360, 430, 510, 620, 750, 900, 1100, 1350,
+  0, 300, 360, 430, 510, 620, 750, 900, 1100, 1350, 1650,
 ]);
 /**
  * @constant PLUS_UNLOCK_COSTS - the cost to unlock each successive Ultimate Weapon Plus upgrade
