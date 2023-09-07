@@ -921,7 +921,12 @@ export const ATTACK_UNLOCKS = Object.freeze([
   Object.freeze({
     name: 'Default',
     cost: 0,
-    upgrades: Object.freeze([DAMAGE_WORKSHOP.name, ASPD_WORKSHOP.name]),
+    upgrades: Object.freeze([
+      DAMAGE_WORKSHOP.name,
+      ASPD_WORKSHOP.name,
+      CRIT_CHANCE_WORKSHOP.name,
+      CRIT_FACTOR_WORKSHOP.name,
+    ]),
   }),
   Object.freeze({
     name: 'Range Upgrades',
