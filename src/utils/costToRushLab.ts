@@ -22,7 +22,7 @@ export const GEM_THRESHOLDS = Object.freeze([
 ]);
 
 /**
- * @function timeToGems - Tells you how many gems to rush a lab of a specific length
+ * @function costToRushLab - Tells you how many gems to rush a lab of a specific length
  *
  * @remarks
  * The formula works as follows:
@@ -35,7 +35,7 @@ export const GEM_THRESHOLDS = Object.freeze([
  * @returns number - how many gems it costs to rush the lab,
  * rounded up to the nearest integer
  */
-export const timeToGems = (seconds: number) => {
+export const costToRushLab = (seconds: number) => {
   let gems = 0;
   if (seconds > THREE_HUNDRED_SIXTY_DAYS) {
     gems = 25000;
