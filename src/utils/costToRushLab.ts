@@ -8,7 +8,7 @@ const NINETY_DAYS = 7776000;
 const THREE_HUNDRED_SIXTY_DAYS = 31104000;
 
 /**
- * @constant GEM_THRESHOLDS - The thresholds where Gems change, in seconds
+ * @constant GEM_THRESHOLDS - The thresholds where Gem costs change in seconds
  */
 export const GEM_THRESHOLDS = Object.freeze([
   ONE_SECOND,
@@ -21,6 +21,29 @@ export const GEM_THRESHOLDS = Object.freeze([
   THREE_HUNDRED_SIXTY_DAYS,
 ]);
 
+const ONE_SECOND_COST = 0.002083;
+const ONE_MINUTE_COST = 0.125;
+const ONE_HOUR_COST = 7.5;
+const ONE_DAY_COST = 163;
+const ONE_WEEK_COST = 1000;
+const THIRTY_DAYS_COST = 3550;
+const NINETY_DAYS_COST = 8000;
+const THREE_HUNDRED_SIXTY_DAYS_COST = 25000;
+
+/**
+ * @constant GEM_COSTS - The minimum amounts each threshold costs in Gems
+ */
+export const GEM_COSTS = Object.freeze([
+  ONE_SECOND_COST,
+  ONE_MINUTE_COST,
+  ONE_HOUR_COST,
+  ONE_DAY_COST,
+  ONE_WEEK_COST,
+  THIRTY_DAYS_COST,
+  NINETY_DAYS_COST,
+  THREE_HUNDRED_SIXTY_DAYS_COST,
+]);
+
 /**
  * @function costToRushLab - Tells you how many gems to rush a lab of a specific length
  *
@@ -31,31 +54,63 @@ export const GEM_THRESHOLDS = Object.freeze([
  *   (inclusive), the cost is a flat amount (depending on the tier) plus a constant cost for
  *   each second between the current tier and the next.
  *
- * @param seconds - number - the length of the lab in seconds
+ * @param secondsRemaining - number - the length of the lab in seconds
  * @returns number - how many gems it costs to rush the lab,
  * rounded up to the nearest integer
  */
-export const costToRushLab = (seconds: number) => {
-  let gems = 0;
-  if (seconds > THREE_HUNDRED_SIXTY_DAYS) {
-    gems = 25000;
-  } else if (seconds > NINETY_DAYS) {
-    gems = (17000 / (THREE_HUNDRED_SIXTY_DAYS - NINETY_DAYS)) * (seconds - NINETY_DAYS) + 8000;
-  } else if (seconds > THIRTY_DAYS) {
-    gems = (4450 / (NINETY_DAYS - THIRTY_DAYS)) * (seconds - THIRTY_DAYS) + 3550;
-  } else if (seconds > ONE_WEEK) {
-    gems = (2550 / (THIRTY_DAYS - ONE_WEEK)) * (seconds - ONE_WEEK) + 1000;
-  } else if (seconds > ONE_DAY) {
-    gems = (837 / (ONE_WEEK - ONE_DAY)) * (seconds - ONE_DAY) + 163;
-  } else if (seconds > ONE_HOUR) {
-    gems = (155.5 / (ONE_DAY - ONE_HOUR)) * (seconds - ONE_HOUR) + 7.5;
-  } else if (seconds > ONE_MINUTE) {
-    gems = (7.375 / (ONE_HOUR - ONE_MINUTE)) * (seconds - ONE_MINUTE) + 0.125;
-  } else if (seconds > ONE_SECOND) {
-    gems = (0.122917 / (ONE_MINUTE - ONE_SECOND)) * (seconds - ONE_SECOND) + 0.002083;
-  } else {
-    gems = 0;
+export const costToRushLab = (secondsRemaining: number) => {
+  if (secondsRemaining >= THREE_HUNDRED_SIXTY_DAYS) {
+    return THREE_HUNDRED_SIXTY_DAYS_COST;
   }
 
-  return Math.ceil(gems);
+  if (secondsRemaining <= ONE_SECOND) {
+    return 0;
+  }
+
+  let currentThreshold = 0;
+  let currentThresholdCost = 0;
+  let nextThreshold = 0;
+  let nextThresholdCost = 0;
+
+  if (secondsRemaining > NINETY_DAYS) {
+    currentThreshold = NINETY_DAYS;
+    currentThresholdCost = NINETY_DAYS_COST;
+    nextThreshold = THREE_HUNDRED_SIXTY_DAYS;
+    nextThresholdCost = THREE_HUNDRED_SIXTY_DAYS_COST;
+  } else if (secondsRemaining > THIRTY_DAYS) {
+    currentThreshold = THIRTY_DAYS;
+    currentThresholdCost = THIRTY_DAYS_COST;
+    nextThreshold = NINETY_DAYS;
+    nextThresholdCost = NINETY_DAYS_COST;
+  } else if (secondsRemaining > ONE_WEEK) {
+    currentThreshold = ONE_WEEK;
+    currentThresholdCost = ONE_WEEK_COST;
+    nextThreshold = THIRTY_DAYS;
+    nextThresholdCost = THIRTY_DAYS_COST;
+  } else if (secondsRemaining > ONE_DAY) {
+    currentThreshold = ONE_DAY;
+    currentThresholdCost = ONE_DAY_COST;
+    nextThreshold = ONE_WEEK;
+    nextThresholdCost = ONE_WEEK_COST;
+  } else if (secondsRemaining > ONE_HOUR) {
+    currentThreshold = ONE_HOUR;
+    currentThresholdCost = ONE_HOUR_COST;
+    nextThreshold = ONE_DAY;
+    nextThresholdCost = ONE_DAY_COST;
+  } else if (secondsRemaining > ONE_MINUTE) {
+    currentThreshold = ONE_MINUTE;
+    currentThresholdCost = ONE_MINUTE_COST;
+    nextThreshold = ONE_HOUR;
+    nextThresholdCost = ONE_HOUR_COST;
+  } else if (secondsRemaining > ONE_SECOND) {
+    currentThreshold = ONE_SECOND;
+    currentThresholdCost = ONE_SECOND_COST;
+    nextThreshold = ONE_MINUTE;
+    nextThresholdCost = ONE_MINUTE_COST;
+  }
+
+  let costPerSecondOverThreshold = (nextThresholdCost - currentThresholdCost) / (nextThreshold - currentThreshold);
+  let secondsOverThreshold = secondsRemaining - currentThreshold;
+
+  return Math.ceil(costPerSecondOverThreshold * secondsOverThreshold + currentThresholdCost);
 };
