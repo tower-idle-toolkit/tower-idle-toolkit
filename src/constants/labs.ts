@@ -242,4 +242,5 @@ export const LabValues: Readonly<{
   'Protector Radius': levelToAddition(-0.3),
   'Protector Damage Reduction': levelToAddition(-0.3),
   'Light Speed Shots': levelToAddition(1),
+  'Black Hole disable Ranged Enemies': levelToAddition(1),
 });
