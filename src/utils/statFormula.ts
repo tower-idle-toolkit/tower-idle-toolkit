@@ -1,3 +1,13 @@
+/* NOTE - This is more or less copy pasted from code sent by the Developer, with a tiny bit of translation and updating
+ *  to keep it up to date with changes to the app and make it work in JS.
+ *  The code that scales down enemies if you haven't reached wave 40 in T1 is removed, and the final stats are floored
+ *  to match the ingame display and returned in a nice object, but otherwise it is left untouched after translation.
+ *  This code quality is intentionally left poor, to mimic the actual code in the game, so future code sent by
+ *  the developer is easy to update and implement. I know it is poor quality. Please do not try to improve it.
+ *  I will not be accepting requests to refactor this function, and I do not want to ensure multiple copies are
+ *  maintained/updated through package changes.
+ */
+
 /**
  * @function getStats - gets the stats for the current wave
  *
