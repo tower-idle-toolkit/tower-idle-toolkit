@@ -14386,5 +14386,11 @@
       "DURATION": 71940,
       "COST": 3000000
     }
+  },
+  "Black Hole disable Ranged Enemies": {
+    "1": {
+      "DURATION": 2500000,
+      "COST": 550000000000
+    }
   }
 }

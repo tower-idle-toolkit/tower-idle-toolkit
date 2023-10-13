@@ -1,8 +1,8 @@
-const SECOND = 1;
-const MINUTE = SECOND * 60;
-const HOUR = MINUTE * 60;
-const DAY = HOUR * 24;
-const YEAR = DAY * 365;
+export const SECOND = 1;
+export const MINUTE = SECOND * 60;
+export const HOUR = MINUTE * 60;
+export const DAY = HOUR * 24;
+export const YEAR = DAY * 365;
 
 /**
  * @function formatTime - Converts seconds to a nicely formatted string
