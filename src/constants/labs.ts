@@ -247,7 +247,6 @@ export const LabValues: Readonly<{
 
 /**
  * @constant LAB_GROUPS -  A map of Lab group titles to the Labs contained in that group
- *
  */
 
 export const LAB_GROUPS = {
