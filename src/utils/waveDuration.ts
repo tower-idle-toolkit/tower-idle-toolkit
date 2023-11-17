@@ -96,7 +96,7 @@ export const WAVE_DURATION = 26;
 /**
  * @constant NORMAL_WAVE_COOLDOWN - The base length for the cooldown (green bar) between waves lasts on non-boss waves, outside of tournaments, and without Wave Accelerator, before applying game speed - note that Device Frame Drift may extend this slightly.
  */
-export const NORMAL_WAVE_COOLDOWN = 8;
+export const NORMAL_WAVE_COOLDOWN = 9;
 
 /**
  * @constant BOSS_WAVE_COOLDOWN - The base length for the cooldown (green bar) between waves lasts on boss waves, outside of tournaments, and without Wave Accelerator, before applying game speed - note that Device Frame Drift may extend this slightly.
