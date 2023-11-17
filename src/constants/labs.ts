@@ -245,7 +245,12 @@ export const LabValues: Readonly<{
   'Black Hole disable Ranged Enemies': levelToAddition(1),
 });
 
-export const GROUPS = {
+/**
+ * @constant LAB_GROUPS -  A map of Lab group titles to the Labs contained in that group
+ *
+ */
+
+export const LAB_GROUPS = {
   'Main Labs': [
     'Game Speed',
     'Starting Cash',
